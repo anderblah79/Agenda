@@ -15,8 +15,8 @@ if ($conn->connect_error) {
     die("Falha na conexão: " . $conn->connect_error);
 }
 
-// Consulta os agendamentos
-$sql = "SELECT nome, CONCAT(UCASE(SUBSTRING(servico, 1, 1)), LCASE(SUBSTRING(servico, 2))) AS servico, DATE_FORMAT(data, '%d/%m/%Y') AS data_formatada, SUBSTR(horario, 1, 5) AS horario FROM agendamentos";
+// Consulta os agendamentos ordenados por serviço
+$sql = "SELECT nome, CONCAT(UCASE(SUBSTRING(servico, 1, 1)), LCASE(SUBSTRING(servico, 2))) AS servico, DATE_FORMAT(data, '%d/%m/%Y') AS data_formatada, SUBSTR(horario, 1, 5) AS horario FROM agendamentos ORDER BY servico";
 $result = $conn->query($sql);
 
 // Inicializar o PDF
@@ -36,7 +36,7 @@ $pdf->SetFont('helvetica', '', 10);
 
 // Adicionar o nome do salão no cabeçalho
 $pdf->SetFont('helvetica', 'B', 14);
-$pdf->Cell(0, 10, 'Salão de Beleza', 0, 1, 'C');
+$pdf->Cell(0, 10, 'Agenda geral do Salão', 0, 1, 'C');
 
 // Cabeçalho da tabela
 $header = array('Nome', 'Serviço', 'Data', 'Horário');
