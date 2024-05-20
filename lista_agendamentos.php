@@ -22,7 +22,7 @@
             </ul>
         </nav>
     </header>
-    <div class="container">
+    <div class="container" id="lista-agendamentos">
         <h2 class="text-center">Lista de Agendamentos</h2>
 
         <?php
@@ -64,6 +64,7 @@
                     <div class='col border-end'><strong>Horário</strong></div>
                     <div class='col border-end'><strong>Edição</strong></div>
                 </div>";
+                
                     // Loop pelos agendamentos
                     while ($row_agendamento = $result_agendamentos->fetch_assoc()) {
                         echo "<div class='row border-bottom'>
@@ -71,11 +72,13 @@
             <div class='col border-end'>" . $row_agendamento["data_formatada"] . "</div>
             <div class='col border-end'>" . $row_agendamento["horario"] . "</div>
             <div class='col border-end border-start'>
+            
                 <a href='editar.php?id=" . $row_agendamento["id"] . "' class='btn btn-primary btn-sm'>Editar</a>
                 <button onclick='confirmDelete(" . $row_agendamento["id"] . ")' class='btn btn-danger btn-sm'>Excluir</button>
                 
             </div>
-        </div>";
+            
+        </div>";        
                     }
                 } else {
                     echo "<p>Não existem agendamentos para este serviço.</p>";
@@ -94,8 +97,8 @@
                     window.location.href = "excluir.php?id=" + id;
                 }
             }
+            
         </script>
-
     </div>
     <footer>
         <h2>Contato</h2>
@@ -104,6 +107,7 @@
         <p>&copy; 2024 Salão de Beleza</p>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    
 </body>
 
 </html>
